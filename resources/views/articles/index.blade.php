@@ -27,7 +27,7 @@
                 <a href="article/{{$article->id}}}"> {{$article->name}}</a>
             </td>
             <td>{{$article->department}}</td>
-            <td>{{$article->timestamp}}</td>
+            <td>{{$article->created_at}}</td>
             <td>
                 <button class="btn btn-default">
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>

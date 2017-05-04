@@ -21,6 +21,6 @@ Route::get('/article/create', 'ArticlesController@create');
 
 Route::get('/article/{article}', 'ArticlesController@show');
 
-
-
+Route::get('/budget', 'BudgetController@index');
+Route::get('/budget/create', 'BudgetController@create');
 

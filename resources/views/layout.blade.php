@@ -5,6 +5,8 @@
     <title>Статті бюджетів</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
+    {{HTML::script()}}
+    @yield('scripts')
 </head>
 <body>
 <header>

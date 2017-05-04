@@ -3,7 +3,7 @@
     <h1>Статті бюджетів</h1>
 
     <nav>
-        <a href="create-article.html" class="btn btn-default">Створити</a>
+        <a href="/article/create" class="btn btn-default">Створити</a>
 
         <form class="search">
             <input class="form-control" placeholder="Пошук">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use Illuminate\Http\Request;
 
 use App\Budget;
@@ -40,31 +41,44 @@ class BudgetController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+//        Article::create([
+//                'name' => request('name'),
+//                'description' => request('description'),
+//                'quarter1' => request('quarter1'),
+//                'quarter2' => request('quarter2'),
+//                'quarter3' => request('quarter3'),
+//                'quarter4' => request('quarter4'),
+//                'type' => request('type'),
+//                'budget' => $id,
+//            ]
+//        );
+//
+//        flash('Успішно додано')->success();
+//        return redirect('/budget/'.$id);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $article = Budget::find($id);
-
-        return view('budget.show', compact('article'));
+        $budget = Budget::find($id);
+        $articles = Article::all()->where('budget', $id);
+        return view('budget.show', compact('budget', 'articles'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -75,8 +89,8 @@ class BudgetController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -87,7 +101,7 @@ class BudgetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

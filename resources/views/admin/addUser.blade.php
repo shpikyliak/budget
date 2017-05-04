@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    <h1>Створити корчистувача</h1>
+    <h1>Створити користувача</h1>
 
     <form method="post" action="/admin/add-user">
 
@@ -18,7 +18,7 @@
 
         <div id="department-select" style="padding: 13px;" class="row">
             <label class="control-label" for="article-group">Тип користувача: </label>
-            <select name="department" id="article-group" class="form-control">
+            <select name="type" id="article-group" class="form-control">
                 @foreach($usersTypes as $usersType)
                     <option value="{{$usersType->id}}">{{$usersType->name}}</option>
                 @endforeach

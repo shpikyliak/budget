@@ -25,10 +25,18 @@ Route::get('/article/{article}', 'ArticlesController@show');
 
 Route::get('/budget', 'BudgetController@index');
 
-Route::get('/budget/create', 'BudgetController@create');
+Route::get('/budget/create', 'BudgetController@store');
 
 Route::post('/budget/create', 'BudgetController@save');
+
+Route::get('/budget/{id}/add-article', 'ArticlesController@create');
+
+Route::post('/budget/{id}/add-article', 'ArticlesController@store');
+
+Route::get('/budget/{id}', 'BudgetController@show');
 
 Route::get('/admin/add-user', 'AdminController@addUser');
 
 Route::post('/admin/add-user', 'AdminController@saveUser');
+
+Route::get('/login', 'UserController@index');

@@ -15,4 +15,9 @@ class AdminController extends Controller
         $departments = DB::table('departments')->get();
         return view('admin.addUser' , compact('usersTypes', 'departments'));
     }
+
+    public function saveUser()
+    {
+        return json_encode($_POST);
+    }
 }

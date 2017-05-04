@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
 use Illuminate\Http\Request;
 
-class ArticlesController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,12 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        //
+    }
 
-        return view('articles.index', compact('articles'));
+    public function login()
+    {
+        return view('users.login');
     }
 
     /**
@@ -24,65 +26,49 @@ class ArticlesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
-        return view('articles.create', compact('id'));
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id)
+    public function store(Request $request)
     {
-
-        Article::create([
-                'name' => request('name'),
-                'description' => request('description'),
-                'quarter1' => request('quarter1'),
-                'quarter2' => request('quarter2'),
-                'quarter3' => request('quarter3'),
-                'quarter4' => request('quarter4'),
-                'type' => request('type'),
-                'budget' => $id,
-            ]
-        );
-
-        flash('Успішно додано')->success();
-        return redirect('/budget/'.$id);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $article = Article::find($id);
-
-        return view('articles.show', compact('article'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -93,7 +79,7 @@ class ArticlesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

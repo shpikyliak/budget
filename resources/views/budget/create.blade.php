@@ -1,73 +1,58 @@
 @extends('layout')
 
+@section('scripts')
+    <script type="text/javascript" src="{{ URL::asset('js/department.js') }}"></script>
+@endsection
+
+
 @section('content')
     <h1>Створити вид бюджету</h1>
-    <nav>
-        <a href="#" class="btn btn-primary">Зберігти</a>
 
-        <a style="float: right" class="btn btn-danger" href="/budget">Вийти</a>
-
-    </nav>
     <hr>
     <h4>Головна інформація</h4>
-    <div class="row">
-        <div class="col-md-8">
+    <form method="post" action="/budget/create">
 
-            <input type="email" class="form-control" placeholder="Назва">
+        <div class="row">
+            <div class="col-md-8">
+
+                <input type="text" class="form-control" name="name" placeholder="Назва">
+            </div>
         </div>
 
-    </div>
-    <br>
-    <div style="padding: 13px" class="row">
-        <div class="col-md-4">
-            <label>
-                <input id="show-department-select" type="checkbox"> Назначити відділу
-            </label>
+        <div style="padding: 13px" class="row">
+            <textarea class="form-control" rows="4" placeholder="Опис" name="description"></textarea>
         </div>
-    </div>
-    <div style="padding: 13px" class="row">
-        <label class="control-label" for="article-group">Група: </label>
-        <select name="department" id="article-group" class="form-control">
-            <option></option>
-            @foreach($departments as $department)
-                <option value="{{$department->id}}">{{$department->name}}</option>
-            @endforeach
-        </select>
-    </div>
-    <div style="padding: 13px" class="row">
-        <label class="control-label">Модель: </label>
-        <select class="form-control">
-            <option>Моя організація</option>
-            <option></option>
 
-        </select>
-    </div>
-    <div style="padding: 13px" class="row">
-        <label class="control-label">Спосіб планування: </label>
-        <select class="form-control">
-            <option>На фіксований період</option>
-            <option>Гнучкий період</option>
-        </select>
-    </div>
-    <div style="padding: 13px" class="row">
-        <label class="control-label">Період: </label>
-        <select class="form-control">
-            <option>Місяць</option>
-            <option>Сезон</option>
-            <option>Рік</option>
-        </select>
-    </div>
-    <h4>Границя фактичних данних</h4>
-    <div class="radio">
-        <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-            Границя фактичних данних припускається всередині періода бюджету
-        </label>
-    </div>
-    <div class="radio">
-        <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-            Розміщується до початку періоду
-        </label>
-    </div>
+        <div style="padding: 13px" class="row">
+            <div class="col-sm-2">
+                    <input class="form-control" name="income" placeholder="Дохід"  type="text">
+            </div>
+            <div class="col-sm-2">
+                    <input class="form-control" name="outgo" placeholder="Витрати"  type="text">
+            </div>
+        </div>
+
+
+        <div style="padding: 13px" class="row">
+            <div class="col-md-4">
+                <label>
+                    <input name="show-department-select" id="show-department-select" type="checkbox"> Назначити відділу
+                </label>
+            </div>
+        </div>
+
+        <div id="department-select" style="padding: 13px; display: none" class="row">
+            <label class="control-label" for="article-group">Відділ: </label>
+            <select name="department" id="article-group" class="form-control">
+                <option value=""></option>
+                @foreach($departments as $department)
+                    <option value="{{$department->id}}">{{$department->name}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <p style="color: #a0a0a0; font-size: 12px">*(Цю інформацію можна буде змінити)</p>
+        <button type="submit" class="btn btn-primary">Зберігти</button>
+    </form>
 @endsection

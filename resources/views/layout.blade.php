@@ -5,7 +5,7 @@
     <title>Статті бюджетів</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
-    {{HTML::script()}}
+    <script type="text/javascript" src="{{ URL::asset('js/jquery.js') }}"></script>
     @yield('scripts')
 </head>
 <body>

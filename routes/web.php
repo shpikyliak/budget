@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome',['name'=>'nuleel']);
 });
 
+
+
 Route::get('/article', 'ArticlesController@index');
 
 Route::get('/article/create', 'ArticlesController@create');
@@ -22,6 +24,11 @@ Route::get('/article/create', 'ArticlesController@create');
 Route::get('/article/{article}', 'ArticlesController@show');
 
 Route::get('/budget', 'BudgetController@index');
+
 Route::get('/budget/create', 'BudgetController@create');
+
 Route::post('/budget/create', 'BudgetController@save');
 
+Route::get('/admin/add-user', 'AdminController@addUser');
+
+Route::post('/admin/add-user', 'AdminController@saveUser');

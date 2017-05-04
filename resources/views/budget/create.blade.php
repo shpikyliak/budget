@@ -23,14 +23,14 @@
             <textarea class="form-control" rows="4" placeholder="Опис" name="description"></textarea>
         </div>
 
-        <div style="padding: 13px" class="row">
-            <div class="col-sm-2">
-                    <input class="form-control" name="income" placeholder="Дохід"  type="text">
-            </div>
-            <div class="col-sm-2">
-                    <input class="form-control" name="outgo" placeholder="Витрати"  type="text">
-            </div>
-        </div>
+        {{--<div style="padding: 13px" class="row">--}}
+            {{--<div class="col-sm-2">--}}
+                    {{--<input class="form-control" name="income" placeholder="Дохід"  type="text">--}}
+            {{--</div>--}}
+            {{--<div class="col-sm-2">--}}
+                    {{--<input class="form-control" name="outgo" placeholder="Витрати"  type="text">--}}
+            {{--</div>--}}
+        {{--</div>--}}
 
 
         <div style="padding: 13px" class="row">

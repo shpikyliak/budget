@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\User;
 
 
 class AdminController extends Controller
@@ -18,6 +21,26 @@ class AdminController extends Controller
 
     public function saveUser()
     {
-        return json_encode($_POST);
+
+
+        $id = request('department');
+        if (empty($id)) {
+            $id = Auth::user()->department;
+        }
+        $password = Hash::make(str_random(8));
+        $data = array(
+            'name' => request('name'),
+            'email' => request('email'),
+            'department' => (int)$id,
+            'type' => request('type'),
+            'password'=>$password,
+        );
+           // dd($data);
+        User::create(
+            $data
+        );
+
+        flash('Успішно створено!')->success();
+        return redirect('/budget');
     }
 }

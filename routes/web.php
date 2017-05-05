@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome',['name'=>'nuleel']);
 });
 
-
+//article
 
 Route::get('/article', 'ArticlesController@index');
 
@@ -23,23 +23,34 @@ Route::get('/article/create', 'ArticlesController@create');
 
 Route::get('/article/{article}', 'ArticlesController@show');
 
+//budget
+
 Route::get('/budget', 'BudgetController@index');
-
-Route::get('/budget/create', 'BudgetController@store');
-
-Route::post('/budget/create', 'BudgetController@save');
 
 Route::get('/budget/{id}/add-article', 'ArticlesController@create');
 
 Route::post('/budget/{id}/add-article', 'ArticlesController@store');
 
+Route::get('/budget/create', 'BudgetController@create');
+
+Route::post('/budget/create', 'BudgetController@store');
+
 Route::get('/budget/{id}', 'BudgetController@show');
+
+//admin
 
 Route::get('/admin/add-user', 'AdminController@addUser');
 
 Route::post('/admin/add-user', 'AdminController@saveUser');
 
+//auth
 
-Auth::routes();
+Route::get('/login', 'UserController@login');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/login', 'UserController@createSession');
+
+Route::get('/logout', 'UserController@logout');
+
+
+
+

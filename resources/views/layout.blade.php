@@ -14,10 +14,19 @@
     <p id="head_name">
         Управління бюджетом
 
-        <a style="float: right; color: white; font-size: 18px" href="/login"> Війти </a>
-    </p>
+
+    @if(Auth::check())
+        <div style="float: right; padding: 0">
+            <a style="color: white; font-size: 18px; display: inline" href="/logout"> Вийти </a>
+            <p style="color: #b0b0b0; display: inline">{{Auth::user()->name}}</p>
+        </div>
+
+    @else
+        <a style="float: right; color: white; font-size: 18px" href="/login"> Увійти </a>
+        @endif
+        </p>
 </header>
- @include('navbar')
+@include('navbar')
 
 <div class="my-content">
     @include('flash::message')

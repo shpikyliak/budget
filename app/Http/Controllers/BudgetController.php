@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use App\Budget;
 use App\Department;
 
@@ -46,20 +46,20 @@ class BudgetController extends Controller
      */
     public function store(Request $request)
     {
-//        Article::create([
-//                'name' => request('name'),
-//                'description' => request('description'),
-//                'quarter1' => request('quarter1'),
-//                'quarter2' => request('quarter2'),
-//                'quarter3' => request('quarter3'),
-//                'quarter4' => request('quarter4'),
-//                'type' => request('type'),
-//                'budget' => $id,
-//            ]
-//        );
-//
-//        flash('Успішно додано')->success();
-//        return redirect('/budget/'.$id);
+        $id = request('department');
+        if (empty($id)) {
+            $id = Auth::user()->department;
+        }
+
+        Budget::create([
+                'name' => request('name'),
+                'description' => request('description'),
+                'department' => $id,
+            ]
+        );
+
+        flash('Успішно створено!')->success();
+        return redirect('/budget');
     }
 
     /**

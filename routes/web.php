@@ -54,6 +54,12 @@ Route::get('/admin/add-user', 'AdminController@addUser');
 
 Route::post('/admin/add-user', 'AdminController@saveUser');
 
+Route::get('/admin/messages', 'AdminController@messages');
+
+Route::get('/admin/messages/{id}', 'AdminController@showMessage');
+
+Route::post('/admin/messages/{id}/sendAnswer', 'AdminController@sendAnswer');
+
 Route::get('/office', 'AdminController@office');
 
 //auth

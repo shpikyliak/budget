@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Message;
 
 
 class AdminController extends Controller
@@ -49,5 +50,31 @@ class AdminController extends Controller
     public function office()
     {
         return view('admin.office');
+    }
+
+    public function messages()
+    {
+        $messages = Message::all();
+
+
+        return view('admin.messages',compact('messages'));
+    }
+
+    public function showMessage($id)
+    {
+        $message = Message::find($id);
+
+
+        $to_change = json_decode($message->to_change);
+        return view('admin.showMessage',compact('message','to_change'));
+    }
+
+    public function sendAnswer(Request $request, $id)
+    {
+
+
+
+        flash('Успішно!')->success();
+        return redirect('/budget');
     }
 }

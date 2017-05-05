@@ -101,3 +101,10 @@ form.search button
     margin-left: 25%;
     margin-top: 100px;
 }
+
+.message-text
+{
+    width: 50%;
+    min-height: 50px;
+    padding: 15px;
+}

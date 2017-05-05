@@ -33,6 +33,8 @@ Route::post('/budget/{id}/add-article', 'ArticlesController@store');
 
 Route::get('/budget/create', 'BudgetController@create');
 
+Route::get('/budget/{id}/edit', 'BudgetController@edit');
+
 Route::post('/budget/create', 'BudgetController@store');
 
 Route::get('/budget/{id}', 'BudgetController@show');

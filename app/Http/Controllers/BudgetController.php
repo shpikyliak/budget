@@ -33,10 +33,6 @@ class BudgetController extends Controller
         return view('budget.create', compact('departments'));
     }
 
-    public function save()
-    {
-        echo json_encode($_POST);
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -83,7 +79,9 @@ class BudgetController extends Controller
      */
     public function edit($id)
     {
-        //
+        $budget = Budget::find($id);
+        $departments = Department::all();
+        return view('budget.edit',compact('budget', 'departments'));
     }
 
     /**

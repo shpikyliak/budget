@@ -27,7 +27,9 @@ class AdminController extends Controller
         if (empty($id)) {
             $id = Auth::user()->department;
         }
+
         $password = Hash::make(str_random(8));
+
         $data = array(
             'name' => request('name'),
             'email' => request('email'),

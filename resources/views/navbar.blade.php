@@ -1,4 +1,4 @@
 <aside>
-    <a class='current' href="/article">Статті бюджетів</a>
-    <a href="/budget">Бюджет</a>
+    <a class='current' href="/budget">Бюджет</a>
+    <a href="/office">Кабінет</a>
 </aside>

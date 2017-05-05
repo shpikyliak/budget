@@ -93,7 +93,17 @@ class BudgetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $budget = Budget::find($id);
+
+        $budget->name = $request->name;
+        $budget->description = $request->description;
+        $budget->department = $request->department;
+
+        $budget->save();
+
+        flash('Успішно змінено!')->success();
+        return redirect('/budget/'.$id);
     }
 
     /**
@@ -102,8 +112,12 @@ class BudgetController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+
+        Budget::destroy($id);
+
+        flash('Успішно видалено!')->success();
+        return redirect('/budget');
     }
 }

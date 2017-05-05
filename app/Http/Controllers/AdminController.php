@@ -45,4 +45,9 @@ class AdminController extends Controller
         flash('Успішно створено!')->success();
         return redirect('/budget');
     }
+
+    public function office()
+    {
+        return view('admin.office');
+    }
 }

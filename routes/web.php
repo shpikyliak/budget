@@ -23,6 +23,11 @@ Route::get('/article/create', 'ArticlesController@create');
 
 Route::get('/article/{article}', 'ArticlesController@show');
 
+Route::get('/article/{id}/edit', 'ArticlesController@edit');
+
+Route::post('/article/{id}/edit', 'ArticlesController@update');
+
+Route::get('/article/{id}/delete', 'ArticlesController@delete');
 //budget
 
 Route::get('/budget', 'BudgetController@index');
@@ -35,7 +40,11 @@ Route::get('/budget/create', 'BudgetController@create');
 
 Route::get('/budget/{id}/edit', 'BudgetController@edit');
 
+Route::post('/budget/{id}/edit', 'BudgetController@update');
+
 Route::post('/budget/create', 'BudgetController@store');
+
+Route::get('/budget/{id}/delete', 'BudgetController@delete');
 
 Route::get('/budget/{id}', 'BudgetController@show');
 
@@ -44,6 +53,8 @@ Route::get('/budget/{id}', 'BudgetController@show');
 Route::get('/admin/add-user', 'AdminController@addUser');
 
 Route::post('/admin/add-user', 'AdminController@saveUser');
+
+Route::get('/office', 'AdminController@office');
 
 //auth
 

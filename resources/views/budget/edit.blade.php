@@ -5,11 +5,11 @@
 @endsection
 
 @section('content')
-    <h1>Створити вид бюджету</h1>
+    <h1>Редагувати бюджет</h1>
 
     <hr>
     <h4>Головна інформація</h4>
-    <form method="post" action="/budget/edit">
+    <form method="post" action="/budget/{{$budget->id}}/edit">
 
         <div class="row">
             <div class="col-md-8">
@@ -19,7 +19,7 @@
         </div>
 
         <div style="padding: 13px" class="row">
-            <textarea class="form-control" rows="4" placeholder="Опис" name="description"></textarea>
+            <textarea class="form-control" rows="4" placeholder="Опис" name="description">{{$budget->description}}</textarea>
         </div>
 
         <div style="padding: 13px" class="row">
@@ -34,8 +34,8 @@
             <label class="control-label" for="article-group">Відділ: </label>
             <select name="department" id="article-group" class="form-control">
                 @foreach($departments as $department)
-                    @if($department->id == $budget->$department)
-                        <option checked value="{{$department->id}}">{{$department->name}}</option>
+                    @if($department->id == $budget->department)
+                        <option selected value="{{$department->id}}">{{$department->name}}</option>
                     @else
                         <option value="{{$department->id}}">{{$department->name}}</option>
                     @endif

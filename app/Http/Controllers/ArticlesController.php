@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
@@ -75,6 +76,11 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
+        $article = Article::find($id);
+
+        $articleTypes = DB::table('articles_types')->get();
+
+        return view('articles.edit', compact('article', 'articleTypes'));
 
     }
 
@@ -87,7 +93,21 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $article = Article::find($id);
+
+        $article->name = $request->name;
+        $article->description = $request->description;
+        $article->type = $request->type;
+        $article->quarter1 = $request->quarter1;
+        $article->quarter2 = $request->quarter2;
+        $article->quarter3 = $request->quarter3;
+        $article->quarter4 = $request->quarter4;
+
+        $article->save();
+
+        flash('Успішно змінено!')->success();
+        return redirect('/budget/'.$article->budget);
     }
 
     /**
@@ -96,8 +116,12 @@ class ArticlesController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $article = Article::find($id);
+        Article::destroy($id);
+
+        flash('Успішно видалено!')->success();
+        return redirect('/budget/'.$article->budget);
     }
 }

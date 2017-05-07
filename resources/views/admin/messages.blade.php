@@ -16,7 +16,7 @@
 
     <table class="table">
         <tr>
-            <th>Відділ</th>
+            <th>Відправник</th>
             <th>Вид</th>
             <th>Дата</th>
 
@@ -25,7 +25,7 @@
         @foreach($messages as $message)
             <tr>
                 <td>
-                    <a href="/admin/messages/{{$message->id}}"> {{$message->department}}</a>
+                    <a href="/admin/messages/{{$message->id}}"> {{$message->from_department}}</a>
                 </td>
 
                 <td>{{$message->type}}</td>

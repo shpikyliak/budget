@@ -17,7 +17,7 @@ class AdminController extends Controller
 
         $usersTypes = DB::table('users_types')->get();
         $departments = DB::table('departments')->get();
-        return view('admin.addUser' , compact('usersTypes', 'departments'));
+        return view('admin.addUser', compact('usersTypes', 'departments'));
     }
 
     public function saveUser()
@@ -36,9 +36,9 @@ class AdminController extends Controller
             'email' => request('email'),
             'department' => (int)$id,
             'type' => request('type'),
-            'password'=>$password,
+            'password' => $password,
         );
-           // dd($data);
+        // dd($data);
         User::create(
             $data
         );
@@ -57,7 +57,7 @@ class AdminController extends Controller
         $messages = Message::all();
 
 
-        return view('admin.messages',compact('messages'));
+        return view('admin.messages', compact('messages'));
     }
 
     public function showMessage($id)
@@ -66,15 +66,36 @@ class AdminController extends Controller
 
 
         $to_change = json_decode($message->to_change);
-        return view('admin.showMessage',compact('message','to_change'));
+        return view('admin.showMessage', compact('message', 'to_change'));
     }
 
     public function sendAnswer(Request $request, $id)
     {
 
 
+        $message = Message::find($id);
+
+        $quartes = array(
+            'quarter1' => $request->quarter1,
+            'quarter2' => $request->quarter2,
+            'quarter3' => $request->quarter3,
+            'quarter4' => $request->quarter4,
+        );
+        $data = array(
+            'to_change' => json_encode($quartes),
+            'message' => $request->message,
+            'from_department' => Auth::user()->department,
+            'to_department' => $message->from_department,
+            'article' => $message->article,
+            'is_done'=>false,
+        );
+        //$message->
+
+        Message::create(
+            $data
+        );
 
         flash('Успішно!')->success();
-        return redirect('/budget');
+        return redirect('/admin/messages');
     }
 }

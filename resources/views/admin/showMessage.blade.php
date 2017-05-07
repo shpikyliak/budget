@@ -9,7 +9,7 @@
     <h5>Стаття: {{$message->article}}</h5>
 
     <p><b>Дата:</b> {{$message->created_at}}</p>
-    <form method="post" action="admin/message/{{$message->id}}/sendAnswer">
+    <form method="post" action="/admin/messages/{{$message->id}}/sendAnswer">
         <div style="padding: 17px" class="row">
             <div class="col-sm-4">
                 <label class="control-label">Квартал 1: </label>

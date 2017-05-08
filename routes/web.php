@@ -60,6 +60,8 @@ Route::get('/admin/messages/{id}', 'AdminController@showMessage');
 
 Route::post('/admin/messages/{id}/sendAnswer', 'AdminController@sendAnswer');
 
+Route::get('/admin/messages/{article}/history', 'AdminController@history');
+
 Route::get('/office', 'AdminController@office');
 
 //auth

@@ -2,6 +2,11 @@
 
 @section('content')
 
+    <nav>
+        <a style="float: right" href="/admin/messages/{{$message->article}}/history" class="btn btn-primary">Переглянути історію</a>
+    </nav>
+    <br>
+    <hr>
     <h4>Відділ: {{$message->department}}</h4>
 
     <p class="bg-warning message-text">{{$message->message}}</p>
@@ -9,6 +14,7 @@
     <h5>Стаття: {{$message->article}}</h5>
 
     <p><b>Дата:</b> {{$message->created_at}}</p>
+
     <form method="post" action="/admin/messages/{{$message->id}}/sendAnswer">
         <div style="padding: 17px" class="row">
             <div class="col-sm-4">

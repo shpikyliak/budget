@@ -13,7 +13,11 @@ class AddCoulumnToMessageTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('messages', function (Blueprint $table) {
+            $table->integer('version');
+
+
+        });
     }
 
     /**
@@ -23,6 +27,9 @@ class AddCoulumnToMessageTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('messages', function ($table) {
+            $table->dropColumn('version');
+
+        });
     }
 }

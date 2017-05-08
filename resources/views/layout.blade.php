@@ -28,7 +28,7 @@
 </header>
 @include('navbar')
 
-<div class="my-content">
+<div class="container my-content">
     @include('flash::message')
 
     @yield('content')

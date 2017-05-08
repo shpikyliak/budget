@@ -14,7 +14,7 @@ class AddColumnToMessagesTable extends Migration
     public function up()
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->integer('message_type');
+            $table->integer('message_type_id');
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnToMessagesTable extends Migration
     public function down()
     {
         Schema::table('messages', function ($table) {
-            $table->dropColumn('message_type');
+            $table->dropColumn('message_type_id');
         });
     }
 }

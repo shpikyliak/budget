@@ -108,3 +108,30 @@ form.search button
     min-height: 50px;
     padding: 15px;
 }
+
+
+.small-table
+{
+
+    width: 50%!important;
+}
+
+.small-table td
+{
+    padding: 4px;
+}
+
+.message-text-small
+{
+    width: 80%;
+    min-height: 80px;
+    padding: 15px;
+}
+
+.message_type
+{
+    display: inline-block;
+    color: green;
+    margin-left: 10px;
+    font-size: 18px
+}

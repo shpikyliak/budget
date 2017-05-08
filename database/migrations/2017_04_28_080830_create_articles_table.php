@@ -17,8 +17,8 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->char("name");
             $table->text('description');
-            $table->integer('type');
-            $table->integer('budget');
+            $table->integer('type_id');
+            $table->integer('budget_id');
             $table->float('quarter1');
             $table->float('quarter2');
             $table->float('quarter3');

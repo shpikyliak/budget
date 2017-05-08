@@ -15,8 +15,8 @@ class ChangeMessagesTable extends Migration
     {
         Schema::table('messages', function (Blueprint $table) {
             $table->dropColumn('department');
-            $table->integer('from_department');
-            $table->integer('to_department');
+            $table->integer('from_department_id');
+            $table->integer('to_department_id');
         });
     }
 
@@ -28,8 +28,8 @@ class ChangeMessagesTable extends Migration
     public function down()
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->dropColumn('from_department');
-            $table->dropColumn('to_department');
+            $table->dropColumn('from_department_id');
+            $table->dropColumn('to_department_id');
             $table->integer('department');
         });
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -81,14 +82,17 @@ class AdminController extends Controller
             'quarter3' => $request->quarter3,
             'quarter4' => $request->quarter4,
         );
+
         $data = array(
             'to_change' => json_encode($quartes),
             'message' => $request->message,
             'from_department' => Auth::user()->department,
             'to_department' => $message->from_department,
             'article' => $message->article,
-            'is_done'=>false,
+            'is_done' => false,
+            'version' => $message->version + 1,
         );
+
         //$message->
 
         Message::create(
@@ -97,5 +101,15 @@ class AdminController extends Controller
 
         flash('Успішно!')->success();
         return redirect('/admin/messages');
+    }
+
+    public function history($article)
+    {
+
+        $messages = Message::where('article', $article)->get();
+        $message = Message::where('article', $article)->first();
+        $article = Article::find(1);
+        dd($message->articleq);
+        return view('admin.history', compact('messages', 'article'));
     }
 }

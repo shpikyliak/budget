@@ -8,7 +8,7 @@
     </p>
 
     <p style="padding: 20px">
-        <b>Відділ:</b> {{$budget->department}}
+        <b>Відділ:</b> {{$budget->department_id}}
     </p>
 
 

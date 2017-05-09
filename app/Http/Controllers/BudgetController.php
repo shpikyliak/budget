@@ -50,7 +50,7 @@ class BudgetController extends Controller
         Budget::create([
                 'name' => request('name'),
                 'description' => request('description'),
-                'department' => $id,
+                'department_id' => $id,
             ]
         );
 
@@ -67,7 +67,7 @@ class BudgetController extends Controller
     public function show($id)
     {
         $budget = Budget::find($id);
-        $articles = Article::all()->where('budget', $id);
+        $articles = Article::all()->where('budget_id', $id);
         return view('budget.show', compact('budget', 'articles'));
     }
 

@@ -106,10 +106,14 @@ class AdminController extends Controller
     public function history($article)
     {
 
-        $messages = Message::where('article', $article)->get();
-        $message = Message::where('article', $article)->first();
-        $article = Article::find(1);
-        dd($message->articleq);
+       // $messages = Message::where('article', $article)->get();
+        $a = array(
+            'quarter1' => 1000,
+            'quarter2' => 1100,
+            'quarter3' => 1200,
+            'quarter4' => 1300,
+        );
+        dd(json_encode($a));
         return view('admin.history', compact('messages', 'article'));
     }
 }

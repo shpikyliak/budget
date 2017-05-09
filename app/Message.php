@@ -13,4 +13,21 @@ class Message extends Model
     {
         return $this->belongsTo(Article::class);
     }
+    public function type()
+    {
+        return $this->belongsTo(MessagesType::class);
+    }
+    public function from_department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+    public function to_department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    public function message_type()
+    {
+        return $this->belongsTo(MessagesType::class);
+    }
 }

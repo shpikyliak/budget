@@ -19,9 +19,12 @@ class CreateMessagesTable extends Migration
             $table->text('message');
             $table->text('to_change');
             $table->integer('type_id');
-            $table->integer('department_id');
             $table->integer('article_id');
             $table->boolean('is_done');
+            $table->integer('from_department_id');
+            $table->integer('to_department_id');
+            $table->integer('version');
+            $table->integer('message_type_id');
             $table->timestamps();
         });
     }

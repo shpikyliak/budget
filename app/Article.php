@@ -12,4 +12,18 @@ class Article extends Model
     {
         return $this->hasMany(Message::class);
     }
+
+    public function type()
+    {
+        return $this->belongsTo(ArticlesType::class);
+    }
+
+    public function budget()
+    {
+        return $this->belongsTo(Budget::class);
+    }
+
+
+
+
 }

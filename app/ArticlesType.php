@@ -4,17 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Budget extends Model
+class ArticlesType extends Model
 {
-    protected $guarded = [];
-
     public function articles()
     {
         return $this->hasMany(Article::class);
     }
 
-    public function department()
-    {
-        return $this->belongsTo(Department::class);
-    }
 }

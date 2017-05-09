@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\ArticleType;
+use App\Budget;
+use App\Department;
+use App\Message;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -27,6 +31,8 @@ class ArticlesController extends Controller
      */
     public function create($id)
     {
+        $a = Message::find(1);
+        dd($a->message_type);
         return view('articles.create', compact('id'));
     }
 
@@ -46,8 +52,8 @@ class ArticlesController extends Controller
                 'quarter2' => request('quarter2'),
                 'quarter3' => request('quarter3'),
                 'quarter4' => request('quarter4'),
-                'type' => request('type'),
-                'budget' => $id,
+                'type_id' => request('type'),
+                'budget_id' => $id,
             ]
         );
 

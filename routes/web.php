@@ -81,5 +81,10 @@ Route::post('/login', 'UserController@createSession');
 Route::get('/logout', 'UserController@logout');
 
 
+//departments
+
+Route::get('/departments', 'DepartmentController@index');
+
+Route::get('/departments/{id}/budgets', 'DepartmentController@budgets');
 
 

@@ -38,11 +38,9 @@ class Department extends Model
         $departments = $this->departments;
         foreach ($departments as $department) {
             $colletion[] = $department->budgets;
-            if ($department->departments->isNotEmpty())
-            {
+            if ($department->departments->isNotEmpty()) {
                 $relatedDepartments = $department->departments;
-                foreach ($relatedDepartments as $relatedDepartment)
-                {
+                foreach ($relatedDepartments as $relatedDepartment) {
                     $colletion[] = $relatedDepartment->budgets;
                 }
             }
@@ -51,6 +49,31 @@ class Department extends Model
 
         return collect($colletion);
 
+    }
+
+    public function allDepartments()
+    {
+        $colletion[] = $this->departments;
+        $departments = $this->departments;
+
+        foreach ($departments as $department) {
+
+            if ($department->departments->isNotEmpty()) {
+
+                $colletion[] = $department->departments;
+                foreach ($department->departments as $relatedDepartments) {
+                    if ($relatedDepartments->departments->isNotEmpty()) {
+                        $colletion[] = $relatedDepartments->departmets;
+
+                    }
+                }
+
+            }
+
+
+        }
+
+        return collect($colletion);
     }
 
 }

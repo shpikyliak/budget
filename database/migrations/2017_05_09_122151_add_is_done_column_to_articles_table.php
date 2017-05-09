@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddRelatedColumnToDepartments extends Migration
+class AddIsDoneColumnToArticlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddRelatedColumnToDepartments extends Migration
      */
     public function up()
     {
-        Schema::table('departments', function (Blueprint $table) {
-            $table->integer('related_to');
+        Schema::table('articles', function (Blueprint $table) {
+            $table->boolean('is_done')->default(1);
 
         });
     }
@@ -26,8 +26,8 @@ class AddRelatedColumnToDepartments extends Migration
      */
     public function down()
     {
-        Schema::table('departments', function (Blueprint $table) {
-            $table->dropColumn('related_to');
+        Schema::table('articles', function (Blueprint $table) {
+            $table->dropColumn('is_done');
 
         });
     }

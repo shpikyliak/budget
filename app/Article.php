@@ -23,6 +23,11 @@ class Article extends Model
         return $this->belongsTo(Budget::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
 
 

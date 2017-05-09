@@ -17,6 +17,8 @@
     <table class="table">
         <tr>
             <th>Відправник</th>
+            <th>Відділ</th>
+            <th>Заявка стаття</th>
             <th>Вид</th>
             <th>Дата</th>
 
@@ -25,16 +27,22 @@
         @foreach($messages as $message)
             <tr>
                 <td>
-                    <a href="/admin/messages/{{$message->id}}"> {{$message->from_department}}</a>
+                    {{$message->user->name}}
+                </td>
+                <td>
+                    {{$message->from_department->name}}
+                </td>
+                <td>
+                    {{$message->article->name}}
                 </td>
 
-                <td>{{$message->type}}</td>
+                <td><span class="glyphicon glyphicon-{{$message->type->gliphon}}"></span></td>
 
                 <td>{{$message->created_at}}</td>
 
                 <td>
                     <a class="btn btn-default" href="/admin/messages/{{$message->id}}">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        Відповісти
                     </a>
                 </td>
 

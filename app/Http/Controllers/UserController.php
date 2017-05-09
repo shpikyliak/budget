@@ -34,7 +34,7 @@ class UserController extends Controller
 
         if (Auth::attempt($data)) {
             flash('Ви успішно війшли!');
-            return redirect('/budget');
+            return redirect('/office');
         } else {
             flash('Невірно введені данні')->error();
             return redirect('/login');

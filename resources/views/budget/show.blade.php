@@ -8,7 +8,7 @@
     </p>
 
     <p style="padding: 20px">
-        <b>Відділ:</b> {{$budget->department_id}}
+        <b>Відділ:</b> {{$budget->department->name}}
     </p>
 
 
@@ -42,7 +42,7 @@
                     <a href="/article/{{$article->id}}"> {{$article->name}}</a>
                 </td>
 
-                <td>{{$article->type}}</td>
+                <td>{{$article->type->name}}</td>
 
                 <td>{{$article->quarter1}}</td>
 

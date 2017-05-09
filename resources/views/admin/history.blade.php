@@ -58,7 +58,7 @@
             <div class="col-md-6">
                 <h5> Повідомлення:</h5>
                 <p class="bg-warning message-text-small">{{$message->message}}</p>
-
+c
             </div>
 
         </div>

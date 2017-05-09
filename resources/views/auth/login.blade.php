@@ -6,7 +6,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-5">
-                    <input type="email" name="email" class="form-control"  placeholder="Email">
+                    <input type="text" name="email" class="form-control"  placeholder="Email">
                 </div>
             </div>
             <div class="form-group">

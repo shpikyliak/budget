@@ -9,6 +9,7 @@ use App\Department;
 use App\Message;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
 {
@@ -31,8 +32,7 @@ class ArticlesController extends Controller
      */
     public function create($id)
     {
-        $a = Message::find(1);
-        dd($a->message_type);
+
         return view('articles.create', compact('id'));
     }
 
@@ -54,6 +54,8 @@ class ArticlesController extends Controller
                 'quarter4' => request('quarter4'),
                 'type_id' => request('type'),
                 'budget_id' => $id,
+                'user_id' => Auth::user()->id,
+
             ]
         );
 
@@ -104,16 +106,17 @@ class ArticlesController extends Controller
 
         $article->name = $request->name;
         $article->description = $request->description;
-        $article->type = $request->type;
+        $article->type_id = $request->type;
         $article->quarter1 = $request->quarter1;
         $article->quarter2 = $request->quarter2;
         $article->quarter3 = $request->quarter3;
         $article->quarter4 = $request->quarter4;
+        $article->user_id = Auth::user()->id;
 
         $article->save();
 
         flash('Успішно змінено!')->success();
-        return redirect('/budget/'.$article->budget);
+        return redirect('/budget/'.$article->budget_id);
     }
 
     /**

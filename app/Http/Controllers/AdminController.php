@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -27,35 +28,37 @@ class AdminController extends Controller
 
         $id = request('department');
         if (empty($id)) {
-            $id = Auth::user()->department;
+            $id = Auth::user()->department_id;
         }
 
-        $password = Hash::make(str_random(8));
+        $password = str_random(8);
+        $passwordHash = Hash::make($password);
 
         $data = array(
             'name' => request('name'),
             'email' => request('email'),
-            'department' => (int)$id,
-            'type' => request('type'),
-            'password' => $password,
-        );
-        // dd($data);
-        User::create(
-            $data
+            'department_id' => (int)$id,
+            'type_id' => request('type'),
+            'password' => $passwordHash,
         );
 
-        flash('Успішно створено!')->success();
+        User::create($data);
+
+        flash('Успішно створено! Пароль: ' . $password)->success();
         return redirect('/budget');
     }
 
     public function office()
     {
-        return view('admin.office');
+        $department = Department::find(Auth::user()->department_id);
+        $newMessages = $department->newMessages()->count();
+        return view('admin.office', compact('newMessages'));
     }
 
     public function messages()
     {
-        $messages = Message::all();
+        $department = Department::find(Auth::user()->department_id);
+        $messages = $department->newMessages();
 
 
         return view('admin.messages', compact('messages'));
@@ -74,7 +77,7 @@ class AdminController extends Controller
     {
 
 
-        $message = Message::find($id);
+        $message = Message::find((int)$id);
 
         $quartes = array(
             'quarter1' => $request->quarter1,
@@ -82,22 +85,27 @@ class AdminController extends Controller
             'quarter3' => $request->quarter3,
             'quarter4' => $request->quarter4,
         );
+        $type = 1;
 
-        $data = array(
-            'to_change' => json_encode($quartes),
-            'message' => $request->message,
-            'from_department' => Auth::user()->department,
-            'to_department' => $message->from_department,
-            'article' => $message->article,
-            'is_done' => false,
-            'version' => $message->version + 1,
-        );
-
-        //$message->
-
+        if ($message->type_id == 1) {
+            $type = 2;
+        }
         Message::create(
-            $data
+            array(
+                'to_change' => json_encode($quartes),
+                'message' => $request->message,
+                'from_department_id' => Auth::user()->department_id,
+                'to_department_id' => $message->from_department_id,
+                'article_id' => $message->article_id,
+                'is_done' => false,
+                'version' => $message->version + 1,
+                'user_id' => Auth::user()->id,
+                'type_id' => $type
+            )
         );
+
+        $message->is_done = true;
+        $message->save();
 
         flash('Успішно!')->success();
         return redirect('/admin/messages');
@@ -106,7 +114,7 @@ class AdminController extends Controller
     public function history($article)
     {
 
-       // $messages = Message::where('article', $article)->get();
+        // $messages = Message::where('article', $article)->get();
         $a = array(
             'quarter1' => 1000,
             'quarter2' => 1100,

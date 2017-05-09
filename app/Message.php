@@ -30,4 +30,8 @@ class Message extends Model
     {
         return $this->belongsTo(MessagesType::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

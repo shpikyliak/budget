@@ -20,13 +20,15 @@
             <th>Дата</th>
             <th></th>
         </tr>
-        @foreach($budgets as $budget)
+        @foreach($budgets as $collection)
+            @foreach($collection as $budget)
+
             <tr>
                 <td>
                     <a href="/budget/{{$budget->id}}"> {{$budget->name}}</a>
                 </td>
 
-                <td>{{$budget->department}}</td>
+                <td>{{$budget->department->name}}</td>
                 <td>{{$budget->created_at}}</td>
                 <td>
                     <a class="btn btn-default" href="/budget/{{$budget->id}}/edit">
@@ -37,6 +39,7 @@
                     </a>
                 </td>
             </tr>
+                @endforeach
         @endforeach
 
 

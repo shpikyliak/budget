@@ -3,18 +3,21 @@
 @section('content')
 
     <nav>
-        <a style="float: right" href="/admin/messages/{{$message->article}}/history" class="btn btn-primary">Переглянути історію</a>
+        @if($message->type_id == 2)
+            <a href="/admin/messages/{{$message->id}}/accept" class="btn btn-success">Підтвердити</a>
+        @endif
+        <a style="float: right" href="/admin/messages/{{$message->article_id}}/history" class="btn btn-primary">Переглянути історію</a>
     </nav>
     <br>
     <hr>
-    <h4>Відділ: {{$message->department}}</h4>
+    <h4>Стаття: {{$message->article->name}}</h4>
 
+
+
+    <h5>Відділ: {{$message->from_department->name}}</h5>
+
+    <p><span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{$message->created_at}}</p>
     <p class="bg-warning message-text">{{$message->message}}</p>
-
-    <h5>Стаття: {{$message->article}}</h5>
-
-    <p><b>Дата:</b> {{$message->created_at}}</p>
-
     <form method="post" action="/admin/messages/{{$message->id}}/sendAnswer">
         <div style="padding: 17px" class="row">
             <div class="col-sm-4">

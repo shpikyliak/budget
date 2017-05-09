@@ -1,11 +1,11 @@
 @extends('layout')
 
 @section('content')
-    <h1>Створити статтю бюджету</h1>
+    <h1>Редагувати статтю</h1>
 
     <nav>
 
-        <a href="/budget/{{$article->budget}}" style="float: right" class="btn btn-danger">Вийти</a>
+        <a href="/budget/{{$article->budget_id}}" style="float: right" class="btn btn-danger">Вийти</a>
     </nav>
 
     <hr>
@@ -27,7 +27,7 @@
                 <label class="control-label" for="article-group">Тип: </label>
                 <select name='type' id="article-group" class="form-control">
                     @foreach($articleTypes as $articleType)
-                        @if($articleType->id == $article->type)
+                        @if($articleType->id == $article->type_id)
                             <option selected value="{{$articleType->id}}">{{$articleType->name}}</option>
                         @else
                             <option value="{{$articleType->id}}">{{$articleType->name}}</option>

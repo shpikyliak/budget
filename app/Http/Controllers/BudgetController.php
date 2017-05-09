@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use App\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +18,8 @@ class BudgetController extends Controller
      */
     public function index()
     {
-        $budgets = Budget::all();
-
+        $budgets = Auth::user()->department->allBudgets();
+       // dd($budgets);
         return view('budget.index', compact('budgets'));
     }
 
@@ -44,13 +45,14 @@ class BudgetController extends Controller
     {
         $id = request('department');
         if (empty($id)) {
-            $id = Auth::user()->department;
+            $id = Auth::user()->department_id;
         }
 
         Budget::create([
                 'name' => request('name'),
                 'description' => request('description'),
                 'department_id' => $id,
+                'user_id' => Auth::user()->id,
             ]
         );
 
@@ -67,7 +69,11 @@ class BudgetController extends Controller
     public function show($id)
     {
         $budget = Budget::find($id);
-        $articles = Article::all()->where('budget_id', $id);
+
+
+
+        $articles = Article::all()->where('budget_id', (int)$id);
+
         return view('budget.show', compact('budget', 'articles'));
     }
 
@@ -98,7 +104,8 @@ class BudgetController extends Controller
 
         $budget->name = $request->name;
         $budget->description = $request->description;
-        $budget->department = $request->department;
+        $budget->department_id = $request->department;
+        $budget->user_id = Auth::user()->id;
 
         $budget->save();
 

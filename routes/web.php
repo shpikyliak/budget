@@ -28,6 +28,14 @@ Route::get('/article/{id}/edit', 'ArticlesController@edit');
 Route::post('/article/{id}/edit', 'ArticlesController@update');
 
 Route::get('/article/{id}/delete', 'ArticlesController@delete');
+
+//message
+
+Route::get('/article/{article_id}/send-message', 'MessageController@create');
+
+Route::post('/article/{article_id}/send-message', 'MessageController@store');
+
+Route::get('/admin/messages/{id}/accept', 'MessageController@accept');
 //budget
 
 Route::get('/budget', 'BudgetController@index');
